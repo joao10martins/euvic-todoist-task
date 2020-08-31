@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">EuvicTodoist</string>
+    <string name="title_todos">Todos</string>
+    <string name="title_posts">Posts</string>
+
+    <string name="status_completed">COMPLETED</string>
+    <string name="status_uncompleted">TODO</string>
+    <string name="todos_search_bar">Search...</string>
+</resources>
