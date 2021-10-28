@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!--
+    Dimension
+    -->
     <dimen name="margin_2dp">2dp</dimen>
     <dimen name="margin_4dp">4dp</dimen>
     <dimen name="margin_6dp">6dp</dimen>
@@ -16,4 +19,36 @@
     <dimen name="margin_22dp">22dp</dimen>
     <dimen name="margin_24dp">24dp</dimen>
     <dimen name="margin_26dp">26dp</dimen>
+    <dimen name="margin_50dp">50dp</dimen>
+    <dimen name="margin_100dp">100dp</dimen>
+    <dimen name="open_post_button_width">80dp</dimen>
+    <dimen name="open_post_button_padding">65dp</dimen>
+    <dimen name="card_height">160dp</dimen>
+    <dimen name="todo_item_height">120dp</dimen>
+    <dimen name="todo_item_status_view_height">40dp</dimen>
+
+    <!--
+    Texts
+    -->
+    <dimen name="text_huge">32sp</dimen>
+    <dimen name="text_big">26sp</dimen>
+    <dimen name="text_medium_alt">20sp</dimen>
+    <dimen name="text_medium">18sp</dimen>
+    <dimen name="text_small_alt">14sp</dimen>
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_tiny">8sp</dimen>
+
+    <!--
+    Elevation
+    -->
+    <dimen name="elevation_small">4dp</dimen>
+    <dimen name="elevation_medium">8dp</dimen>
+    <dimen name="elevation_big">12dp</dimen>
+
+    <!--
+    Radius
+    -->
+    <dimen name="card_radius_small">4dp</dimen>
+    <dimen name="card_radius_medium">6dp</dimen>
+    <dimen name="card_radius_big">10dp</dimen>
 </resources>

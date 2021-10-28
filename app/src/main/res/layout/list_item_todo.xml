@@ -15,9 +15,9 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="4dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/card_radius_big"
+            app:cardElevation="@dimen/elevation_small"
             android:layout_margin="@dimen/margin_10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
                     android:textAlignment="center"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_medium"
                     android:textStyle="bold"
                     android:text="@{item.title}"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -48,9 +48,33 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="euvic task euvic task euvic task euvic task euvic task euvic task euvic task euvic task euvic task euvic task" />
 
-                <View
+
+                <!-- TODO user id -->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/todoUserId"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_4dp"
+                    android:layout_marginBottom="@dimen/margin_4dp"
+                    android:layout_marginStart="@dimen/margin_20dp"
+                    android:layout_marginEnd="@dimen/margin_20dp"
+                    android:textAlignment="center"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textSize="@dimen/text_small"
+                    android:textStyle="bold"
+                    android:text="@{@string/todos_userId(item.userId)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/todoTitle"
+                    app:layout_constraintBottom_toTopOf="@+id/todoStatusBackgroundView"
+                    tools:text="userId" />
+
+
+                <View
+                    android:id="@+id/todoStatusBackgroundView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/todo_item_status_view_height"
                     android:background="@{item.completed ? @color/completed : @color/incompleted }"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -65,10 +89,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_16dp"
                     android:layout_marginBottom="@dimen/margin_8dp"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_medium"
                     android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:elevation="8dp"
+                    android:elevation="@dimen/elevation_medium"
                     android:text="@{item.completed ? @string/status_completed : @string/status_uncompleted}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

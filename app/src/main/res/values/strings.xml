@@ -5,5 +5,9 @@
 
     <string name="status_completed">COMPLETED</string>
     <string name="status_uncompleted">TODO</string>
-    <string name="todos_search_bar">Search...</string>
+    <string name="todos_search_bar">Search…</string>
+
+    <string name="todos_userId">User ID: %d</string>
+
+    <string name="comments_activity_app_bar_title">Comments</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.euvictodoist.di
 
+import com.example.euvictodoist.viewmodels.CommentsViewModel
 import com.example.euvictodoist.viewmodels.PostsViewModel
 import com.example.euvictodoist.viewmodels.TodosViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -9,4 +10,5 @@ import org.koin.dsl.module
 val viewModelModules = module {
     viewModel { TodosViewModel(get()) }
     viewModel { PostsViewModel(get()) }
+    viewModel { CommentsViewModel(get()) }
 }

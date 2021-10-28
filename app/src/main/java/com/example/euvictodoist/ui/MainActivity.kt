@@ -13,11 +13,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val binding : ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.apply {
             lifecycleOwner = this@MainActivity
         }

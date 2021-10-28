@@ -1,5 +1,6 @@
 package com.example.euvictodoist.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.euvictodoist.adapters.TodosAdapter
@@ -11,20 +12,12 @@ import java.util.*
 
 class TodosViewModel(private val repository: TodoRepository) : BaseViewModel() {
 
-    var adapter = TodosAdapter()
-    var todoList = MutableLiveData<ArrayList<TodoResponse>>()
+    private val _todoList = MutableLiveData<ArrayList<TodoResponse>>()
+    val todoList : LiveData<ArrayList<TodoResponse>> = _todoList
 
     fun requestTodosList() {
         viewModelScope.launch {
-            todoList.postValue(repository.getTodosList())
+            _todoList.postValue(repository.getTodosList())
         }
-    }
-
-    fun setList(list : List<TodoResponse>) {
-        adapter.setData(list)
-    }
-
-    fun getAdapterTodoList() : TodosAdapter {
-        return adapter
     }
 }

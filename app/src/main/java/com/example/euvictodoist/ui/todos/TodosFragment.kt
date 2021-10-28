@@ -11,21 +11,28 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView.OnEditorActionListener
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import com.example.euvictodoist.adapters.TodosAdapter
+import com.example.euvictodoist.bindingadapter.prepareAdapter
 import com.example.euvictodoist.databinding.FragmentTodosBinding
+import com.example.euvictodoist.models.PostResponse
+import com.example.euvictodoist.models.TodoResponse
 import com.example.euvictodoist.viewmodels.TodosViewModel
 import org.koin.android.ext.android.inject
 
 
 class TodosFragment : Fragment() {
 
-    val todosViewModel : TodosViewModel by inject()
-    lateinit var binding: FragmentTodosBinding
+    private val todosViewModel : TodosViewModel by inject()
+    private var _binding: FragmentTodosBinding? = null
+    private val binding get() = _binding!!
+
+    private val todosAdapter = TodosAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentTodosBinding.inflate(LayoutInflater.from(context), container, false)
+        _binding = FragmentTodosBinding.inflate(LayoutInflater.from(context), container, false)
         binding.apply {
             lifecycleOwner = this@TodosFragment
-            viewModel = todosViewModel // Setting the .xml ViewModel
         }
         return binding.root
     }
@@ -35,25 +42,27 @@ class TodosFragment : Fragment() {
         initFragment()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun initFragment() {
         initSearchBar()
         binding.loading.visibility = View.VISIBLE
-        todosViewModel.requestTodosList() // Requests the TODOS list from the API.
-        todosViewModel.todoList.observe({lifecycle}) {
-            todosViewModel.setList(it)
-            binding.rvTodoList.scheduleLayoutAnimation()
+        todosViewModel.requestTodosList()
+        todosViewModel.todoList.observe(viewLifecycleOwner, Observer {
+            setupData(it)
             binding.loading.visibility = View.GONE
-        }
+        })
     }
 
     private fun initSearchBar() {
-        val todosAdapter = todosViewModel.adapter
         binding.btnSearch.setOnClickListener {
             if (binding.etFilter.text.toString().isNotBlank()) {
                 val userId = Integer.parseInt(binding.etFilter.text.toString())
                 todosAdapter.clearFilters()
                 todosAdapter.getTodosByUserId(userId)
-                binding.rvTodoList.scheduleLayoutAnimation()
                 hideKeyboard()
             }
         }
@@ -76,8 +85,7 @@ class TodosFragment : Fragment() {
         } )
 
         binding.etFilter.setOnEditorActionListener(
-            OnEditorActionListener { v, actionId, event -> // Identifier of the action. This will be either the identifier you supplied,
-                // or EditorInfo.IME_NULL if being called due to the enter key being pressed.
+            OnEditorActionListener { v, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_NEXT) {
                     binding.btnSearch.callOnClick()
                     return@OnEditorActionListener true
@@ -90,5 +98,13 @@ class TodosFragment : Fragment() {
     private fun hideKeyboard() {
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0)
+    }
+
+    private fun setupData(data: ArrayList<TodoResponse>) {
+        todosAdapter.apply {
+            setData(data)
+        }
+        binding.rvTodoList.prepareAdapter(todosAdapter)
+        binding.rvTodoList.scheduleLayoutAnimation()
     }
 }
