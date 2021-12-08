@@ -7,7 +7,7 @@ import com.example.euvictodoist.base.BaseViewModel
 import com.example.euvictodoist.models.PostResponse
 import com.example.euvictodoist.network.repository.PostRepository
 import kotlinx.coroutines.launch
-import java.util.*
+import java.util.ArrayList
 
 class PostsViewModel(private val repository: PostRepository) : BaseViewModel() {
 

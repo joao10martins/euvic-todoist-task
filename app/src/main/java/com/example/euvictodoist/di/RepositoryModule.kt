@@ -2,6 +2,7 @@ package com.example.euvictodoist.di
 
 import com.example.euvictodoist.network.ApiClient
 import com.example.euvictodoist.network.repository.PostRepository
+import com.example.euvictodoist.network.repository.PostRepositoryImpl
 import com.example.euvictodoist.network.repository.TodoRepository
 import org.koin.dsl.module
 
@@ -9,5 +10,6 @@ import org.koin.dsl.module
 val repositoryModule = module {
     single { ApiClient() }
     single { TodoRepository(get()) }
-    single { PostRepository(get()) }
+
+    factory<PostRepository>{ PostRepositoryImpl(postService = get()) }
 }

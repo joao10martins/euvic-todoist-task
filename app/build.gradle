@@ -102,4 +102,10 @@ dependencies {
 
     // Animated RecyclerView
     implementation "com.mlsdev.animatedrv:library:2.0.0"
+
+    // For tests
+    testImplementation "junit:junit:$junit"
+    testImplementation "android.arch.core:core-testing:$archTesting"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockito"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutineTest"
 }
